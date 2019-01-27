@@ -18,3 +18,32 @@ steps:
 
 - script: dotnet test 'Bank.Loans.Tests' --configuration $(buildConfiguration) --logger trx
   displayName: 'Executing tests in $(buildConfiguration)'
+
+# Publish the test results
+- task: PublishTestResults@2
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+
+# Package the function app
+- script: dotnet publish 'Bank.Loans.Functions/Bank.Loans.Functions.csproj' --configuration $(buildConfiguration) --output '$(Build.ArtifactStagingDirectory)/app'
+
+# Publish the build artifact
+- task: PublishBuildArtifacts@1
+  displayName:  'Publish app artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/app'
+    ArtifactName: app
+
+- task: CopyFiles@2
+  displayName: 'Copy end to end tests'
+  inputs:
+    SourceFolder: '/'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/e2etests'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish end to end tests artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/e2etests'
+    ArtifactName: e2etests
+
