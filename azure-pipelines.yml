@@ -38,7 +38,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy end to end tests'
   inputs:
-    SourceFolder: '/'
+    SourceFolder: '/*'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/e2etests'
 
 - task: PublishBuildArtifacts@1
