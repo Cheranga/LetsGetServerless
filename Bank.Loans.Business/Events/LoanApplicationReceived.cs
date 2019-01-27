@@ -3,7 +3,7 @@ using Bank.Loans.Business.DTO;
 
 namespace Bank.Loans.Business.Events
 {
-    public class LoanApplicationReceived : IValidate
+    public class LoanApplicationReceived
     {
         public LoanApplicationReceived(LoanRequest application)
         {
@@ -13,10 +13,5 @@ namespace Bank.Loans.Business.Events
 
         public LoanRequest Application { get; }
         public DateTime ReceivedOn { get; }
-
-        public bool IsValid()
-        {
-            return Application != null;
-        }
     }
 }

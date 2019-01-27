@@ -12,3 +12,16 @@
   * Log all the important steps.
   * Must read the content from `HttpRequest` object and create a `LoanApplicationReceived` event and add it to the queue `loan-applications`.
 * Deploy the function to portal ('LetsGetServerless' function app).
+
+
+## ValidateLoan (1 Pomodoro)
+* Create a queue triggered function
+* Input binding should be of type `LoanApplicationReceived`
+* Validate the `Application` property in that event
+
+```
+Name != null && Age >= 18
+```
+*  Create a `LoanApplicationValidated` event and, if the application is valid, add it to a blob collection called, and  `accepted-applications" else add it to a `rejected-applications`.
+*  Log all the important steps.
+*  Deploy the solution to the portal.
