@@ -22,6 +22,12 @@
 ```
 Name != null && Age >= 18
 ```
-*  Create a `LoanApplicationValidated` event and, if the application is valid, add it to a blob collection called, and  `accepted-applications" else add it to a `rejected-applications`.
+*  Create a `LoanApplicationValidated` event and, if the application is valid, add it to a blob collection called, and  `accepted-applications` else add it to a `rejected-applications`.
 *  Log all the important steps.
 *  Deploy the solution to the portal.
+
+## ProcessApplication (1 pomodoro)
+* Create a blob triggered azure function.
+* The blob container it will be referring to it is the `accepted-loans`.
+* Create a `ActiveLoans` event and add it to another blob container called `active-loans`
+* Deploy it to the portal
